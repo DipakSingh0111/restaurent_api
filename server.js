@@ -2,7 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
-const connectDb = require('./config/database')
+const connectDb = require('./config/database');
+const authRoutes = require('./routes/authRoutes')
 
 
 const app = express();
@@ -18,9 +19,8 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 
-app.get('/', (req,res)=>{
-    res.send("Getting all Product using get Method...");
-});
+// routes
+app.use('/api/v1/auth',authRoutes )
 
 const PORT = process.env.PORT || 4000
 
